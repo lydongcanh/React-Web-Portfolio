@@ -1,37 +1,36 @@
-import React, { useState } from "react";
-import { Progress, Button, Divider } from "antd";
+import React from "react";
+import { Layout, Menu, Icon } from 'antd';
 
-const ButtonGroup = Button.Group;
+const { Content } = Layout;
 
-function HomePage() {
-    const [percent, setPercent] = useState(0);
-
-    function increase() {
-        let newPercent = percent + 10;
-        if (newPercent > 100) {
-            newPercent = 100;
-        }
-        setPercent(newPercent);
-    };
-
-    function decline() {
-        let newPercent = percent - 10;
-        if (newPercent < 0) {
-            newPercent = 0;
-        }
-        setPercent(newPercent);
-    };
+export default function HomePage() {
+    function handleClick(e) {
+        console.log("click " + e.key);
+    }
 
     return (
-        <div>
-            <Progress type="circle" percent={percent} />
-            <Divider type="vertical"/>
-            <ButtonGroup>
-                <Button onClick={decline} icon="minus" />
-                <Button onClick={increase} icon="plus" />
-            </ButtonGroup>
-        </div>
+        <Layout>
+            <Menu
+                onClick={handleClick}
+                mode="horizontal"
+                defaultSelectedKeys="1"
+            >
+                <Menu.Item key="1">
+                    <Icon type="project"/>
+                    Projects
+                </Menu.Item>
+                <Menu.Item key="2">
+                    <Icon type="coffee" />
+                    Blog
+                </Menu.Item>
+                <Menu.Item key="3">
+                    <Icon type="user" />
+                    About me
+                </Menu.Item>
+            </Menu>
+            <Content style={{ padding: '15px', backgroundColor: "white" }}>
+                
+            </Content>
+        </Layout>
     );
 }
-
-export default HomePage;
